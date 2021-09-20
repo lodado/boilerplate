@@ -3,8 +3,13 @@ js SPA vanilla
 
 ## 시작 방법
 
+부스트캠프에서 과제를 하면서 spa, spa router를 직접 만들었는데 공부하면서 구현하다보니 약간 불필요한 내용이 많이 들어가서 아예 갈아엎고 새로 만들려고 판 레포지토리 입니다.
 
-``` 
+참고
+
+https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Component/
+
+```
 git clone https://github.com/lodado/boilerplate
 
 cd boilerplate
@@ -20,6 +25,6 @@ npm start (express 시작)
 윈도우라면 위 npm 2 명령어 대신(build, start)
 
 ```
-npm run test 
+npm run test
 ```
-로 동시에 시작 가능 
+로 동시에 시작 가능
