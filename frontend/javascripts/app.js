@@ -6,9 +6,10 @@ class App {
   constructor() {
     const store = StateController.state;
 
-    const $app = document.querySelector('#app');
-    new storetest($app, store);
+    const $body = document.querySelector('body');
+
+    new storetest($body, store, {id:'test'});
   }
 }
 
-new App(document.querySelector('#app'));
+new App();

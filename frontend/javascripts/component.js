@@ -6,10 +6,11 @@ export default class Component {
   props;
   Difunc;
 
-  constructor($target, props, Difunc = undefined) {
+  constructor($target, props, position, Difunc = undefined) {
     this.$target = $target;
     this.props = props;
     this.Difunc = Difunc;
+    this.position = position;
 
     this.setup();
   }
@@ -21,7 +22,7 @@ export default class Component {
     StateController.observe(() => {
       this.render();
       this.setEvent();
-      this.mount.bind();
+      this.mount();
     });
   }
 
@@ -35,8 +36,25 @@ export default class Component {
     return '';
   }
 
+  myTemplate(){
+
+    const backGround = Object.entries(this.position).map((k, v)=>
+      `${k[0]}=${k[1]}`
+    ).join(" ");
+
+    return `<div ${backGround}>${this.template()}</div>`;
+  }
+
   render() {
-    this.$target.innerHTML = this.template();
+
+    const nowTarget = this.$target.querySelector(`#${this.position.id}`);
+
+    if(nowTarget){
+      nowTarget.insertAdjacentHTML('beforebegin', this.myTemplate());
+      nowTarget.outerHTML = "";
+    }
+    else
+      this.$target.insertAdjacentHTML('beforeend', this.myTemplate());
   }
 
   setEvent() {}
