@@ -17,7 +17,7 @@ npm start (express 시작)
 
 ```
 
-윈도우라면 위 npm 2 명령어 대신(build, start
+윈도우라면 위 npm 2 명령어 대신(build, start)
 
 ```
 npm run test 
