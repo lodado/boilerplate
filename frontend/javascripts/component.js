@@ -1,22 +1,33 @@
 import StateController from './StateController.js';
 
+
+
+/**
+ * 메뉴 항목을 추가한다.
+ * @param {HtmlElement} id 부모 Element (HTML ELEMENT)
+ * @param {state} Object 전역 상태 state
+ * @param {props} Object 자신의 상태(지역) state
+ * @param {position} Object 자신 background attribute들
+ * @param {Difunc} Object DI(Dependency injection)용 함수, 변수 넣는 객체
+ **/
 export default class Component {
   $target;
-  state;
+  state = StateController.state;
   props;
+  position;
   Difunc;
 
   constructor($target, props, position, Difunc = undefined) {
     this.$target = $target;
     this.props = props;
-    this.Difunc = Difunc;
     this.position = position;
+    this.Difunc = Difunc;
 
     this.setup();
   }
 
   setup() {
-    this.state = StateController.observable(this.props);
+    this.props = StateController.observable(this.props);
 
     StateController.observe(() => {
       this.render();
@@ -25,16 +36,12 @@ export default class Component {
     });
   }
 
-  //state 설정
-  initState() {
-    return this.props;
-  }
-
-  //insert view
+  //내부 구성
   template() {
     return '';
   }
 
+  //background
   myTemplate() {
     const backGround = Object.entries(this.position)
       .map((k, v) => `${k[0]}=${k[1]}`)
