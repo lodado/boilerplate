@@ -5,31 +5,20 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
-const apiRouter = require('./routes/api');
 
-const dbFile = require('./routes/model/model.js');
-const session = require('express-session');
-
-
-/*
-const webpack = require("webpack");
-const webpackDevMiddleware = require("webpack-dev-middleware");
-const webpackConfig = require("./webpack.config.js");
-const compiler = webpack(webpackConfig);
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const hotMiddleware = webpackHotMiddleware(compiler);
-*/
+//const session = require('express-session');
 
 const app = express();
 
-app.set('views', 'bundle/webpack/');
+app.set('views', './bundle');
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+app.use(express.static(path.join(__dirname, "..",'bundle')));
+/*
 app.use(session({
 	key: 'chung_cookie',
 	secret: 'session_cookie_secret',
@@ -37,12 +26,9 @@ app.use(session({
 	resave: false,
 	saveUninitialized: false
 }));
-
-
-app.use(express.static(path.join(__dirname, 'bundle', 'webpack')));
+*/
 
 app.use('/', indexRouter);
-app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
