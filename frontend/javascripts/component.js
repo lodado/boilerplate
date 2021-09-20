@@ -1,37 +1,46 @@
+import StateController from './StateController.js';
+
 export default class Component {
   $target;
   state;
   props;
+  Difunc;
 
-  constructor($target, prop) {
+  constructor($target, props, Difunc = undefined) {
     this.$target = $target;
-    this.props = prop;
+    this.props = props;
+    this.Difunc = Difunc;
 
     this.setup();
-    this.setEvent();
-    this.render();
   }
 
-  setup() {}
+  setup() {
+    this.state = StateController.observable(this.initState());
 
+    StateController.observe(() => {
+      this.render();
+      this.setEvent();
+      this.mount();
+    });
+  }
+
+  //state 설정
+  initState() {
+    return this.props;
+  }
+
+  //insert view
   template() {
     return '';
   }
 
   render() {
     this.$target.innerHTML = this.template();
-    this.setEvent();
-    this.mount();
   }
 
   setEvent() {}
 
   mount() {}
-
-  setState(newState) {
-    this.state = { ...this.state, ...newState };
-    this.render();
-  }
 
   //버블링 사용
   addEvent(eventType, selector, callback) {
