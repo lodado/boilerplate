@@ -1,30 +1,49 @@
 export default class Component {
   $target;
-  $state;
+  state;
+  props;
 
-  constructor($target){
-
+  constructor($target, prop) {
     this.$target = $target;
+    this.props = prop;
+
     this.setup();
+    this.setEvent();
     this.render();
   }
 
-  setup(){}
+  setup() {}
 
-  template(){
+  template() {
     return '';
   }
 
-  render(){
+  render() {
     this.$target.innerHTML = this.template();
     this.setEvent();
+    this.mount();
   }
 
-  setEvent(){}
+  setEvent() {}
 
-  setState(newState){
-    this.$state = {...this.$state, ...newState};
+  mount() {}
+
+  setState(newState) {
+    this.state = { ...this.state, ...newState };
     this.render();
+  }
 
+  //버블링 사용
+  addEvent(eventType, selector, callback) {
+    const children = [...this.$target.querySelectorAll(selector)];
+
+    const isTarget = (target) =>
+      children.includes(target) || target.closest(selector);
+
+    this.$target.addEventListener(eventType, (event) => {
+      if (!isTarget(event.target)) return false;
+
+      callback(event);
+    });
   }
 }
