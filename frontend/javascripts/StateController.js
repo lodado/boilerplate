@@ -17,7 +17,6 @@ class StateController {
   }
 
   observable(obj) {
-
     const that = this;
 
     Object.keys(obj).map((key) => {
@@ -26,9 +25,7 @@ class StateController {
 
       Object.defineProperty(obj, key, {
         get() {
-
-          if (that.#cursor)
-            observers.add(that.#cursor);
+          if (that.#cursor) observers.add(that.#cursor);
 
           return _value;
         },

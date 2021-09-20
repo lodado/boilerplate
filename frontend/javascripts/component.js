@@ -16,7 +16,6 @@ export default class Component {
   }
 
   setup() {
-
     this.state = StateController.observable(this.props);
 
     StateController.observe(() => {
@@ -36,25 +35,21 @@ export default class Component {
     return '';
   }
 
-  myTemplate(){
-
-    const backGround = Object.entries(this.position).map((k, v)=>
-      `${k[0]}=${k[1]}`
-    ).join(" ");
+  myTemplate() {
+    const backGround = Object.entries(this.position)
+      .map((k, v) => `${k[0]}=${k[1]}`)
+      .join(' ');
 
     return `<div ${backGround}>${this.template()}</div>`;
   }
 
   render() {
-
     const nowTarget = this.$target.querySelector(`#${this.position.id}`);
 
-    if(nowTarget){
+    if (nowTarget) {
       nowTarget.insertAdjacentHTML('beforebegin', this.myTemplate());
-      nowTarget.outerHTML = "";
-    }
-    else
-      this.$target.insertAdjacentHTML('beforeend', this.myTemplate());
+      nowTarget.outerHTML = '';
+    } else this.$target.insertAdjacentHTML('beforeend', this.myTemplate());
   }
 
   setEvent() {}
