@@ -6,24 +6,30 @@ class StateController {
   constructor() {
     this.state = {
       a: 10,
-      b: 10,
+      b: 20,
     };
   }
 
   observe(callback) {
     this.#cursor = callback;
-    callback();
+    this.#cursor();
     this.#cursor = null;
   }
 
   observable(obj) {
-    Object.keys(obj).forEach((key) => {
+
+    const that = this;
+
+    Object.keys(obj).map((key) => {
       let _value = obj[key];
       const observers = new Set();
 
       Object.defineProperty(obj, key, {
         get() {
-          if (this.#cursor) observers.add(this.#cursor);
+
+          if (that.#cursor)
+            observers.add(that.#cursor);
+
           return _value;
         },
 

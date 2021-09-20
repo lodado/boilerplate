@@ -15,12 +15,13 @@ export default class Component {
   }
 
   setup() {
-    this.state = StateController.observable(this.initState());
+
+    this.state = StateController.observable(this.props);
 
     StateController.observe(() => {
       this.render();
       this.setEvent();
-      this.mount();
+      this.mount.bind();
     });
   }
 
