@@ -7,16 +7,29 @@ class StateController {
     this.state = {
       a: 10,
       b: 20,
-      c:30,
-      d:40
+    };
+
+    this.state1 = {
+      c: 30,
+      d: 40,
     };
 
     this.observers = new Set();
+
+    this.currentCallback = -1;
   }
 
+  debounceFrame = (callback) => {
+    let currentCallback = -1;
+    return () => {
+      cancelAnimationFrame(currentCallback);
+      currentCallback = requestAnimationFrame(callback);
+    };
+  };
+
   observe(callback) {
-    this.#cursor = callback;
-    this.#cursor();
+    this.#cursor = this.debounceFrame(callback);
+    callback();
     this.#cursor = null;
   }
 
@@ -36,6 +49,9 @@ class StateController {
         },
 
         set(value) {
+          if (_value === value) return;
+          if (JSON.stringify(_value) === JSON.stringify(value)) return;
+
           _value = value;
           observer.forEach((fn) => fn());
         },

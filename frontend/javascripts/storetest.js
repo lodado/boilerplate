@@ -2,7 +2,7 @@ import Component from './component.js';
 
 export default class test extends Component {
   setBackground() {
-    this.position = { id: 'test' };
+    this.position = { id: 'test', tag: 'header' };
   }
 
   template() {

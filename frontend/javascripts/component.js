@@ -26,8 +26,7 @@ export default class Component {
   }
 
   setBackground() {
-    this.position = undefined;
-    //{ id: 'test' };
+    this.position = {};
   }
 
   setup() {
@@ -46,10 +45,16 @@ export default class Component {
   }
 
   //background
-  myTemplate() {
+  backGroundTemplate() {
+    const arr = Object.entries(this.position);
+
+    if (arr.length <= 0) return this.template();
+
+    console.log(arr);
+
     if (!this.backGround) {
-      this.backGround = Object.entries(this.position)
-        .map((k, v) => `${k[0]}=${k[1]}`)
+      this.backGround = arr
+        .map((k, v) => (k[0] !== 'tag' ? `${k[0]}=${k[1]}` : ''))
         .join(' ');
     }
 
@@ -62,9 +67,10 @@ export default class Component {
     const nowTarget = this.$target.querySelector(`#${this.position.id}`);
 
     if (nowTarget) {
-      nowTarget.insertAdjacentHTML('beforebegin', this.myTemplate());
+      nowTarget.insertAdjacentHTML('beforebegin', this.backGroundTemplate());
       nowTarget.outerHTML = '';
-    } else this.$target.insertAdjacentHTML('beforeend', this.myTemplate());
+    } else
+      this.$target.insertAdjacentHTML('beforeend', this.backGroundTemplate());
   }
 
   setEvent() {}
