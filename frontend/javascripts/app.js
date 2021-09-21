@@ -8,7 +8,7 @@ class App {
 
     const $body = document.querySelector('body');
 
-    new storetest($body, store, { id: 'test' });
+    new storetest($body, store);
   }
 }
 

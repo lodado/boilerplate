@@ -1,6 +1,11 @@
 import Component from './component.js';
 
 export default class test extends Component {
+
+  setBackground(){
+    this.position = { id: 'test' };
+  }
+
   template() {
     const { a, b } = this.props;
 
@@ -10,6 +15,8 @@ export default class test extends Component {
       <p>a + b = ${a + b}</p>
     `;
   }
+
+
 
   setEvent() {
     const { $target, props } = this;

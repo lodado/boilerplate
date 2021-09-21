@@ -23,7 +23,13 @@ export default class Component {
     this.position = position;
     this.Difunc = Difunc;
 
+    this.setBackground();
     this.setup();
+  }
+
+  setBackground(){
+    this.position = undefined;
+    //{ id: 'test' };
   }
 
   setup() {
@@ -43,11 +49,14 @@ export default class Component {
 
   //background
   myTemplate() {
-    const backGround = Object.entries(this.position)
+
+    if(!this.backGround){
+      this.backGround = Object.entries(this.position)
       .map((k, v) => `${k[0]}=${k[1]}`)
       .join(' ');
+    }
 
-    return `<div ${backGround}>${this.template()}</div>`;
+    return `<${this.position.tag??'div'} ${this.backGround}>${this.template()}</div>`;
   }
 
   render() {
