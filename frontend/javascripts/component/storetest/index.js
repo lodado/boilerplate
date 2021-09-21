@@ -1,4 +1,4 @@
-import Component from './component.js';
+import Component from 'Component/component.js';
 
 export default class test extends Component {
   setBackground() {

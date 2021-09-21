@@ -1,4 +1,4 @@
-import StateController from './StateController.js';
+import StateController from '../StateController.js';
 
 /**
  * 메뉴 항목을 추가한다.
@@ -49,8 +49,6 @@ export default class Component {
     const arr = Object.entries(this.position);
 
     if (arr.length <= 0) return this.template();
-
-    console.log(arr);
 
     if (!this.backGround) {
       this.backGround = arr

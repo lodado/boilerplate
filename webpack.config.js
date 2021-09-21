@@ -37,10 +37,11 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: './',
   },
-  devServer: {
-    contentBase: './',
-    hot: true,
-    watchContentBase: true,
+
+  resolve: {
+    alias: {
+      Component: path.resolve(__dirname, jsPath, 'component'),
+    },
   },
 
   plugins: [

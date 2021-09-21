@@ -1,14 +1,32 @@
-import Component from './component.js';
-import StateController from './StateController.js';
-import storetest from './storetest.js';
+import SpaRouter from './SpaRouter.js';
+import storetest from 'Component/storetest/';
+import storetest1 from 'Component/storetest2/';
 
-class App {
-  constructor() {
-    const store = StateController.state;
+class typeClass {
+  constructor(className, body, store) {
+    (this.class = className), (this.body = body);
+    this.store = store;
+  }
+}
 
-    const $body = document.querySelector('body');
+class App extends SpaRouter {
+  setRoutes() {
+    this.routes = {
+      '/': [new typeClass(storetest, this.$body, this.store)],
+      '/search': [new typeClass(storetest1, this.$body, this.store)],
+    };
+  }
 
-    new storetest($body, store);
+  addRouterEvent() {
+    window.addEventListener('click', ({ target }) => {
+      if (target.classList.contains('rootBtn')) {
+        this.notify('/');
+      }
+
+      if (target.classList.contains('searchBtn')) {
+        this.notify('/search');
+      }
+    });
   }
 }
 
