@@ -1,22 +1,17 @@
 import Component from './component.js';
 
 export default class test extends Component {
-
-  setBackground(){
+  setBackground() {
     this.position = { id: 'test' };
   }
 
   template() {
-    const { a, b } = this.props;
-
     return `
-      <input id="stateA" value="${a}" size="5" />
-      <input id="stateB" value="${b}" size="5" />
-      <p>a + b = ${a + b}</p>
+      <input id="stateA" value="${this.props.a}" size="5" />
+      <input id="stateB" value="${this.props.b}" size="5" />
+      <p>a + b 1111= ${this.props.a + this.props.b}</p>
     `;
   }
-
-
 
   setEvent() {
     const { $target, props } = this;

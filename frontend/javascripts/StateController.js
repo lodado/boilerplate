@@ -8,6 +8,8 @@ class StateController {
       a: 10,
       b: 20,
     };
+
+    this.observers = new Set();
   }
 
   observe(callback) {
@@ -19,23 +21,27 @@ class StateController {
   observable(obj) {
     const that = this;
 
+    const observer = that.observers[JSON.stringify(obj)] || [];
+
+    console.log(that.observers);
+
     Object.keys(obj).map((key) => {
       let _value = obj[key];
-      const observers = new Set();
 
       Object.defineProperty(obj, key, {
         get() {
-          if (that.#cursor) observers.add(that.#cursor);
-
+          if (that.#cursor) observer.push(that.#cursor);
           return _value;
         },
 
         set(value) {
           _value = value;
-          observers.forEach((fn) => fn());
+          observer.forEach((fn) => fn());
         },
       });
     });
+
+    that.observers[JSON.stringify(obj)] = observer;
 
     return obj;
   }

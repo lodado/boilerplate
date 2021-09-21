@@ -1,7 +1,5 @@
 import StateController from './StateController.js';
 
-
-
 /**
  * 메뉴 항목을 추가한다.
  * @param {HtmlElement} id 부모 Element (HTML ELEMENT)
@@ -27,7 +25,7 @@ export default class Component {
     this.setup();
   }
 
-  setBackground(){
+  setBackground() {
     this.position = undefined;
     //{ id: 'test' };
   }
@@ -49,14 +47,15 @@ export default class Component {
 
   //background
   myTemplate() {
-
-    if(!this.backGround){
+    if (!this.backGround) {
       this.backGround = Object.entries(this.position)
-      .map((k, v) => `${k[0]}=${k[1]}`)
-      .join(' ');
+        .map((k, v) => `${k[0]}=${k[1]}`)
+        .join(' ');
     }
 
-    return `<${this.position.tag??'div'} ${this.backGround}>${this.template()}</div>`;
+    return `<${this.position.tag ?? 'div'} ${
+      this.backGround
+    }>${this.template()}</div>`;
   }
 
   render() {
