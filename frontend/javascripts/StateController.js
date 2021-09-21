@@ -7,6 +7,8 @@ class StateController {
     this.state = {
       a: 10,
       b: 20,
+      c:30,
+      d:40
     };
 
     this.observers = new Set();
@@ -22,8 +24,7 @@ class StateController {
     const that = this;
 
     const observer = that.observers[JSON.stringify(obj)] || [];
-
-    console.log(that.observers);
+    //key값 duck typing
 
     Object.keys(obj).map((key) => {
       let _value = obj[key];
