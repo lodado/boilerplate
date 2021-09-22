@@ -1,4 +1,5 @@
 import Component from 'Component/component.js';
+import './style.scss';
 
 export default class test extends Component {
   setBackground() {

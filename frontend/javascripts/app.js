@@ -1,3 +1,5 @@
+import 'Scss/style.scss';
+
 import SpaRouter from './SpaRouter.js';
 import storetest from 'Component/storetest/';
 import storetest1 from 'Component/storetest2/';
