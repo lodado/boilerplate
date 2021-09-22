@@ -15,6 +15,9 @@ export default class Component {
   position;
   Difunc;
 
+  backGround;
+  nowTarget;
+
   constructor($target, props, position, Difunc = undefined) {
     this.$target = $target;
     this.props = props;
@@ -62,11 +65,12 @@ export default class Component {
   }
 
   render() {
-    const nowTarget = this.$target.querySelector(`#${this.position.id}`);
+    this.nowTarget = this.$target.querySelector(`#${this.position.id}`);
 
-    if (nowTarget) {
-      nowTarget.insertAdjacentHTML('beforebegin', this.backGroundTemplate());
-      nowTarget.outerHTML = '';
+    console.log(this.nowTarget);
+
+    if (this.nowTarget) {
+      this.nowTarget.outerHTML =  this.backGroundTemplate();
     } else
       this.$target.insertAdjacentHTML('beforeend', this.backGroundTemplate());
   }
