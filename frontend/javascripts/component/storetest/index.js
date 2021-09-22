@@ -5,7 +5,7 @@ export default class test extends Component {
     this.position = { id: 'test', tag: 'header' };
   }
 
-  template() {
+  async template() {
     return `
       <input id="stateA" value="${this.props.a}" size="5" />
       <input id="stateB" value="${this.props.b}" size="5" />

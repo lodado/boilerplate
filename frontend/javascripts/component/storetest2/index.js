@@ -5,7 +5,7 @@ export default class test1 extends Component {
     this.position = { id: 'test1' };
   }
 
-  template() {
+  async template() {
     return `<input id="stateABC" value="${this.props.a}" size="5" />;
     <p>a + b 2222= ${this.props.a + this.props.b}</p>`;
   }

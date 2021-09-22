@@ -35,23 +35,23 @@ export default class Component {
   setup() {
     this.props = StateController.observable(this.props);
 
-    StateController.observe(() => {
-      this.render();
+    StateController.observe(async () => {
+      await this.render();
       this.setEvent();
       this.mount();
     });
   }
 
   //내부 구성
-  template() {
+  async template() {
     return '';
   }
 
   //background
-  backGroundTemplate() {
+  async backGroundTemplate() {
     const arr = Object.entries(this.position);
 
-    if (arr.length <= 0) return this.template();
+    if (arr.length <= 0) return await this.template();
 
     if (!this.backGround) {
       this.backGround = arr
@@ -61,18 +61,16 @@ export default class Component {
 
     return `<${this.position.tag ?? 'div'} ${
       this.backGround
-    }>${this.template()}</div>`;
+    }>${await this.template()}</div>`;
   }
 
-  render() {
+  async render() {
     this.nowTarget = this.$target.querySelector(`#${this.position.id}`);
-
-    console.log(this.nowTarget);
+    const template = await this.backGroundTemplate();
 
     if (this.nowTarget) {
-      this.nowTarget.outerHTML =  this.backGroundTemplate();
-    } else
-      this.$target.insertAdjacentHTML('beforeend', this.backGroundTemplate());
+      this.nowTarget.outerHTML = template;
+    } else this.$target.insertAdjacentHTML('beforeend', template);
   }
 
   setEvent() {}
