@@ -3,9 +3,17 @@ js SPA vanilla
 
 부스트캠프에서 과제를 하면서 spa, spa router를 레퍼런스 없이 직접 만들었는데 공부하면서 구현하다보니 약간 불필요한 내용이 많이 들어가서 아예 갈아엎고 레퍼런스 참고하여 새로 만들려고 판 레포지토리 입니다.
 
-참고
+## 개선사항
 
-https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Component/
+기존 구현한 코드의 간단한 클래스 다이어그램입니다.
+
+기존 코드는 부스트캠프 내의 프로젝트라 비공개라 공유가 불가능합니다.
+
+1. 값이 바뀔때, 바뀐 부분을 렌더링하라고 알려주는 기능을 구현하기 위해 기존 자체구현한 pub-sub 패턴 클래스를 ```Object.defineProperty``` 기능으로 대체 
+
+2. 비효율적인 코드 제거(render하는 클래스와 component 자체 값(template)가지는 클래스가 나뉘어져 있었는데 합체)
+
+<br>
 
 ## 구현
 
@@ -65,3 +73,9 @@ npm start (express 시작)
 npm run test
 ```
 로 동시에 시작 가능
+
+<br>
+
+### 참고
+
+https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Component/
