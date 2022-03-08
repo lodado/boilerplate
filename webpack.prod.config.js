@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const PUBLIC_ROUTE = './public/';
 const SRC_ROUTE = './src/';
@@ -10,8 +11,7 @@ const JS_ROUTE = `${SRC_ROUTE}javascript/`;
 const JS_PATH = `${JS_ROUTE}app.js`;
 
 module.exports = {
-  mode: 'development',
-  devtool: 'inline-source-map',
+  mode: 'production',
   entry: {
     main: [JS_PATH],
   },
@@ -31,6 +31,11 @@ module.exports = {
     hot: true,
     open: true,
     historyApiFallback: true,
+  },
+
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
   },
 
   output: {

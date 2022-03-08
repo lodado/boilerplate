@@ -1,7 +1,39 @@
 {
-  "plugins": ["prettier"],
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true
+  },
+  "extends": ["eslint:recommended", "airbnb-base", "eslint-config-prettier"],
+  "plugins": ["eslint-plugin-prettier"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "object-curly-newline": "off",
+    "import/prefer-default-export": "off",
+    "class-methods-use-this": "off",
+    "array-callback-return": "off",
+    "no-param-reassign": "off"
+  },
+
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["@Components", "./src/javascript/components"],
+          ["@Global", "./src/javascript/global"],
+          ["@Test", "./test"]
+        ],
+        "extensions": [".js", ".json"]
+      }
+    }
   }
 }

@@ -1,0 +1,25 @@
+@import './reset.css';
+@import './color.css';
+@import './animation.css';
+
+#app {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-spanner {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border: 8px solid var(--white-grey, #f2f3f5);
+  border-top-color: var(--deep-blue, #3570e6);
+  border-radius: 50%;
+  margin-bottom: 10px;
+
+  opacity: 0.99;
+  -webkit-animation: spin 1s ease-in-out infinite;
+  animation: spin 1s linear infinite;
+}
