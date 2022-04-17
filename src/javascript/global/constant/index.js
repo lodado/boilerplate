@@ -10,10 +10,7 @@ export const request = async (url) => {
 };
 
 export const api = {
-  fetchCats: async (keyword) => {
-    return request(`${API_ENDPOINT}/api/cats/search?q=${keyword}`);
-  },
-  fetchCatInfo: async (keyword) => {
-    return request(`${API_ENDPOINT}/api/cats/${keyword}`);
+  fetchExample: async (keyword) => {
+    return request(`${API_ENDPOINT}/api/search?q=${keyword}`);
   },
 };

@@ -4,12 +4,6 @@ import BackgroundTemplate from '@Components/common/BackgroundTemplate';
 
 const defaultOption = { option: {}, props: {}, divTag: {} };
 
-/**
- * 기본 template에 추가적으로 event, 자식 Component를 달 수 있는 class Component
- * @param {$parent} 부모 Element
- * @param {props} Object DI(Dependency injection)용 Object(optional)
- * @param {divTag} Object html attribute를 위에서 주입받음(optional)
- * */
 export default class BaseComponent {
   constructor($parent, { option, props, divTag } = defaultOption) {
     const attribute = {
